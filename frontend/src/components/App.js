@@ -86,7 +86,7 @@ function App() {
 
             setLoggedIn(true);
             
-            const email = data.data.email;
+            const email = data.email;
             
             console.log(email);
             
