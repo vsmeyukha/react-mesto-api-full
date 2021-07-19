@@ -2,6 +2,7 @@ const jwt = require('jsonwebtoken');
 const NotFoundUserError = require('../errors/notFoundUserError');
 
 const auth = (req, res, next) => {
+  const { JWT_SECRET = 'very-secret-key' } = process.env;
   const token = req.cookies.jwt;
 
   if (!token) {
@@ -11,7 +12,7 @@ const auth = (req, res, next) => {
   let payload;
 
   try {
-    payload = jwt.verify(token, 'very-secret-key');
+    payload = jwt.verify(token, JWT_SECRET);
   } catch (err) {
     return next(new NotFoundUserError('Неверный токен'));
   }

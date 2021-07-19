@@ -1,5 +1,13 @@
 const { celebrate, Joi } = require('celebrate');
 const mongoose = require('mongoose');
+const validator = require('validator');
+
+const validateUrl = (link) => {
+  const result = validator.isURL(link);
+  if (result) {
+    return link;
+  } throw new Error('URL validation err');
+};
 
 const validateUserId = celebrate({
   params: Joi.object().keys({
@@ -15,7 +23,7 @@ const validateUserId = celebrate({
 const userInfo = {
   name: Joi.string().max(30),
   about: Joi.string().max(30),
-  avatar: Joi.string().pattern(/https?:\/\/[w{3}.]?[\S^а-яё]/),
+  avatar: Joi.string().custom(validateUrl),
 };
 
 const EmailAndPassword = {
@@ -38,7 +46,7 @@ const validateRegistration = celebrate({
 const validateCardInfo = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().pattern(/https?:\/\/[w{3}.]?[\S^а-яё]/),
+    link: Joi.string().required().custom(validateUrl),
   }),
 });
 
