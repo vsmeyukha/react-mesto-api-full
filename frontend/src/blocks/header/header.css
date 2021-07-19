@@ -1,0 +1,12 @@
+@import url(./__auth/header__auth.css);
+@import url(./__button/header__button.css);
+@import url(./__user-email/header__user-email.css);
+
+.header {
+  width: 100%;
+
+  border-bottom: 1px solid #545454;
+
+  display: flex;
+  justify-content: space-between;
+}

@@ -1,0 +1,16 @@
+@import url(./__content/page__content.css);
+
+body {
+  background-color: black;
+  max-width: 1280px;
+  color: white;
+  margin: auto;
+  box-sizing: border-box;
+  text-rendering: optimizeLegibility;
+}
+
+.page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
