@@ -2,7 +2,7 @@
 const allowedCors = [
   'https://victor.nomoredomains.monster',
   'http://victor.nomoredomains.monster',
-  'localhost:3000',
+  'http://localhost:3000',
 ];
 
 const cors = (req, res, next) => {
