@@ -154,6 +154,19 @@ const getCurrentUser = (req, res, next) => {
     });
 };
 
+const signOut = (req, res, next) => {
+  const token = '';
+
+  res.cookie('jwt', token, {
+    httpOnly: true,
+  })
+    .status(201).send({
+      message: 'Кука удалена',
+    });
+
+  next();
+};
+
 module.exports = {
-  getAllUsers, getUserById, createUser, updateUser, updateAvatar, login, getCurrentUser,
+  getAllUsers, getUserById, createUser, updateUser, updateAvatar, login, getCurrentUser, signOut,
 };

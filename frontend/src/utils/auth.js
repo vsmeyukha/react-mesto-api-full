@@ -43,3 +43,14 @@ export const getUserData = () => {
   })
   .then(_checkResponse);
 };
+
+export const signOut = () => {
+  return fetch(`${BASE_URL}/users/me/signout`, {
+    method: 'POST',
+    credentials: 'include',
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+  .then(_checkResponse);
+}

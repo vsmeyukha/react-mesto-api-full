@@ -69,10 +69,13 @@ function App() {
   // ! обработчик разлогина. ниже мы передаем его пропсом в компонент Header
   // ? тут поменять надот логику. локалсторедж меняем на вызов фетч-запроса к контроллеру на бэке, который в свою очередь уже удалит куку 
   function signOut() {
-    localStorage.removeItem('token');
-    setLoggedIn(false);
-    setUserEmail('');
-    history.push('/sign-in');
+    auth.signOut()
+      .then((data) => {
+        setLoggedIn(false);
+        setUserEmail('');
+        history.push('/sign-in');
+      })
+      .catch((err) => console.error(err));
   }
 
     // ! проверяем, есть ли в хранилище токен. если есть, то меняем стейт-переменную loggedIn с false на true и открываем для пользователя главную страницу. этот эффект нужен для повторного входа пользователя, чтобы он не вводил при входе логин и пароль каждый раз, а заходил беспрепятственно, если он ранее залогинился. 
@@ -85,6 +88,8 @@ function App() {
             console.log(loggedIn);
 
             setLoggedIn(true);
+
+            console.log(loggedIn);
             
             const email = data.email;
             
