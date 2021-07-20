@@ -68,7 +68,7 @@ export const changeAvatar = (obj) => {
 };
 
 export const addALike = (id) => {
-  return fetch(`${BASE_URL}/cards/likes/${id}`, {
+  return fetch(`${BASE_URL}/cards/${id}/likes`, {
     method: 'PUT',
     credentials: 'include',
   })
@@ -76,7 +76,7 @@ export const addALike = (id) => {
 };
 
 export const deleteLike = (id) => {
-  return fetch(`${BASE_URL}/cards/likes/${id}`, {
+  return fetch(`${BASE_URL}/cards/${id}/likes`, {
     method: 'DELETE',
     credentials: 'include',
   })

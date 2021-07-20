@@ -71,6 +71,7 @@ function App() {
   function signOut() {
     auth.signOut()
       .then((data) => {
+        console.log(data);
         setLoggedIn(false);
         setUserEmail('');
         history.push('/sign-in');
@@ -94,6 +95,8 @@ function App() {
             const email = data.email;
             
             console.log(email);
+
+            setCurrentUser(data);
             
             setUserEmail(email);
             
@@ -104,6 +107,8 @@ function App() {
         })
         .catch(err => console.error(err));
       };
+
+      console.log(loggedIn);
   
       // ! вызывать токенчек только когда пользоваетль не залогинен 
       if (!loggedIn) {
@@ -147,13 +152,13 @@ function App() {
   // }, [loggedIn, history]);
 
   // ! используем эффект, чтобы загрузить с сервера первоначальные данные юзера и записать хи в currentUser
-  React.useEffect(() => {
-    auth.getUserData()
-      .then(data => {
-        setCurrentUser(data);
-      })
-      .catch(err => console.error(`Ошибка при получении данных профиля: ${err}`))
-  }, []);
+  // React.useEffect(() => {
+  //   auth.getUserData()
+  //     .then(data => {
+  //       setCurrentUser(data);
+  //     })
+  //     .catch(err => console.error(`Ошибка при получении данных профиля: ${err}`))
+  // }, []);
 
     // ! объявляем переменную состояния, в которую будет приходить массив карточек
     const [cards, setCards] = React.useState([]);
@@ -241,7 +246,7 @@ function App() {
   function handleUpdateUser(currentUser) {
     api.editProfile(currentUser)
       .then(data => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch(err => console.error(`Ошибка при редактировании данных профиля: ${err}`));
@@ -250,7 +255,7 @@ function App() {
   function handleUpdateAvatar(currentUser) {
     api.changeAvatar(currentUser)
       .then(data => {
-        setCurrentUser(data);
+        setCurrentUser(data.data);
         closeAllPopups();
       })
       .catch(err => console.error(`Ошибка при редактировании аватара: ${err}`));
@@ -259,7 +264,7 @@ function App() {
   function handleAddPlaceSubmit(card) {
     api.addNewCard(card)
       .then(data => {
-        setCards([data, ...cards]);
+        setCards([data.data, ...cards]);
         closeAllPopups();
       })
       .catch(err => console.error(`Ошибка при добавлении изображения: ${err}`));
