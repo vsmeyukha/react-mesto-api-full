@@ -10,4 +10,4 @@
 
 Стек: HTML, CSS, Flexbox, Grid, JavaScript, React, Node.js, Express.js, Mongo.DB. 
 
-Фронтенд расположен на домене victor.nomoredomains.monster
+Фронтенд расположен на домене https://victor.nomoredomains.monster/sign-in
